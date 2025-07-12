@@ -1,0 +1,43 @@
+
+swiper-container {
+    display: block;
+    width: 100%;
+    height: 300px; /* Đảm bảo chiều cao của container */
+    position: relative;
+  }
+  swiper-slide {
+    display: block !important; /* Đảm bảo slide không bị tràn */
+    width: 100% !important;
+    height: 300px !important; /* Đặt chiều cao cho mỗi slide */
+  }
+  .slide-1, .slide-2, .slide-3, .slide-4 {
+    width: 100%; /* Mỗi slide chiếm toàn bộ chiều rộng */
+    height: 300px; /* Đặt chiều cao cho mỗi slide */
+  }
+  .slide-1 {
+    background-color: rgb(247, 58, 58);
+  }
+  
+  .slide-2 {
+    background-color: green;
+  }
+  
+  .slide-3 {
+    background-color: blue;
+    color: white;
+  }
+  
+  .slide-4 {
+    background-color: yellow;
+  }
+  
+  .swiper-button-next, .swiper-button-prev {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .swiper-button-next:hover, .swiper-button-prev:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
