@@ -6,11 +6,12 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { SliderComponent } from '../../shared/slider/slider.component';
+import { RouterLink } from "@angular/router";
 
 @Component({
     selector: 'app-home',
     standalone: true,
-    imports: [SliderComponent],
+    imports: [SliderComponent, RouterLink],
     templateUrl: './home.component.html',
     styleUrl: './home.component.css',
     schemas: [CUSTOM_ELEMENTS_SCHEMA]

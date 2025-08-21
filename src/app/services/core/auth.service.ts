@@ -4,17 +4,10 @@ import { User } from "../../models/User";
 import { Injectable } from "@angular/core";
 import { environment } from "../../environments/environment";
 import { BehaviorSubject, catchError, map, Observable, throwError } from "rxjs";
+import { LoginPayload } from "../../models/payload/LoginPayload";
+import { AuthResponse } from "../../models/response/AuthResponse";
 
 
-interface LoginPayload {
-    username: string;
-    password: string;
-}
-
-interface AuthResponse {
-    token: string;
-    user: User;
-}
 
 @Injectable({
     providedIn: 'root'
@@ -31,29 +24,23 @@ export class AuthService {
         this.loadUserFromLocalStorage();
     }
 
-    private loadUserFromLocalStorage(): void {
-        const userJson = localStorage.getItem('user');
-        try {
-            if (userJson) {
-                const parsedUser = JSON.parse(userJson);
-                this.currentUserSubject.next(parsedUser);
-            }
-        } catch (e) {
-            console.error("Failed to parse user from localStorage:", e);
-            localStorage.removeItem('user'); // xoá dữ liệu hỏng nếu có
-        }
-    }
 
     login(payload: LoginPayload): Observable<User> {
         return this.http.post<AuthResponse>(`${this.baseUrl}/log-in`, payload)
             .pipe(
                 map((res: AuthResponse) => {
-                    this.setToken(res.token)
-                    this.setCurrentUser(res.user)
-                    return res.user
+                    const result = res.result
+                    this.setToken(result.token)
+                    this.setCurrentUser(result.user)
+                    return result.user;
                 }),
                 catchError(this.handleError)
             );
+    }
+
+    logout() {
+        this.clearToken();
+        this.currentUserSubject.next(null);
     }
 
     private setToken(token: string): void {
@@ -85,4 +72,20 @@ export class AuthService {
         console.error('HTTP Error:', error);
         return throwError(() => new Error(message));
     }
+
+
+    private loadUserFromLocalStorage(): void {
+        const userJson = localStorage.getItem('user');
+        try {
+            if (userJson) {
+                const parsedUser = JSON.parse(userJson);
+                this.currentUserSubject.next(parsedUser);
+            }
+            console.error("Failed to parse user from localStorage");
+        } catch (e) {
+            console.error("Failed to parse user from localStorage:", e);
+            localStorage.removeItem('user'); // xoá dữ liệu hỏng nếu có
+        }
+    }
+
 }

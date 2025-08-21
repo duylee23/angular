@@ -7,15 +7,8 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
-// export const routes: Routes = [
-//     {path:'', component: HomeComponent},
-//     {path:'details', component: DetailsComponent},
-//     {path:'about', component: AboutComponent},
-//     {path:'contact', component: ContactComponent},
-//     {path:'admin', component: AdminComponent },
-//     {path:'sign-in', component:SignInComponent},
-//     {path:'**', component: NotFoundComponent }
-// ];
+import { ProductsComponent } from './components/products/products.component';
+
 export const routes: Routes = [
   // routes with layout
   {
@@ -27,6 +20,7 @@ export const routes: Routes = [
       { path: 'about', component: AboutComponent },
       { path: 'contact', component: ContactComponent },
       { path: 'admin', component: AdminComponent },
+      { path: 'products', component: ProductsComponent}
     ]
   },
 
