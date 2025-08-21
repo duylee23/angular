@@ -14,23 +14,6 @@ swiper-container {
     width: 100%; /* Mỗi slide chiếm toàn bộ chiều rộng */
     height: 300px; /* Đặt chiều cao cho mỗi slide */
   }
-  .slide-1 {
-    background-color: rgb(247, 58, 58);
-  }
-  
-  .slide-2 {
-    background-color: green;
-  }
-  
-  .slide-3 {
-    background-color: blue;
-    color: white;
-  }
-  
-  .slide-4 {
-    background-color: yellow;
-  }
-  
   .swiper-button-next, .swiper-button-prev {
     background-color: rgba(0, 0, 0, 0.5);
     color: white;
